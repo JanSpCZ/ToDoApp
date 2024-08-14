@@ -1,5 +1,5 @@
 <template>
-    <h2 class="myH2">WELCOME</h2>
+    <h2 class="my-h2">WELCOME</h2>
 </template>
 
 <script>

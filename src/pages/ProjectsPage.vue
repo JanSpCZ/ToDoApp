@@ -1,7 +1,7 @@
 <template>
-    <div class="project-header">
-        <h3 class="myH3">Projects</h3>
-        <div class="new-project" @click="goToNewProjectPage">
+    <div class="add-header">
+        <h3 class="my-h3">Projects</h3>
+        <div class="plus-btn" @click="onClick">
             +
         </div>
     </div>
@@ -15,7 +15,7 @@ import TTasksList from '@/components/TTasksList.vue'
 export default {
     name: "ProjectsPage",
     methods: {
-        goToNewProjectPage() {
+        onClick() {
             this.$router.push("/newproject")
         }
     },
@@ -25,22 +25,5 @@ export default {
 </script>
 
 <style scoped>
-.project-header {
-    max-width: 400px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-.new-project {
-    cursor: pointer;
-    font-size: xx-large;
-    padding: 0 .5rem;
-    transition: color .2s linear;
-}
-
-.new-project:hover {
-    color: #00ADB5;
-}
 
 </style>

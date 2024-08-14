@@ -18,7 +18,7 @@ export default {
         { path: "/", label: "Home" },
         { path: "/projects", label: "Projects" },
         { path: "/tasks", label: "Tasks" },
-        { path: "/persons", label: "Persons" },
+        { path: "/people", label: "People" },
       ]
     }
   },

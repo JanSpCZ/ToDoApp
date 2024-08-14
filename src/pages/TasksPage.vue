@@ -1,5 +1,5 @@
 <template>
-    <h3 class="myH3">Tasks</h3>
+    <h3 class="my-h3">Tasks</h3>
     <TTasksList projectId="All" />
 </template>
 

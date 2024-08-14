@@ -1,5 +1,10 @@
 <template>
-    <h3 class="myH3">Persons</h3>
+    <div class="add-header">
+        <h3 class="my-h3">People</h3>
+        <div class="plus-btn" @click="onClick">
+            +
+        </div>
+    </div>
     <TPersonsList :persons="persons"/>
 </template>
 
@@ -17,9 +22,17 @@ export default {
         this.fetchPersons()
     },
     methods: {
-        ...mapActions(["fetchPersons"])
+        ...mapActions(["fetchPersons"]),
+        onClick() {
+            this.$router.push("/newperson")
+        }
     },
     components: { TPersonsList }
 }
 
 </script>
+
+<style scoped>
+
+
+</style>
