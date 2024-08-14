@@ -46,6 +46,11 @@ const store = createStore({
             return db.get("js6persons").then((persons) => {
                 context.commit("setPersons", persons)
             })
+        },
+        addProject (context, body) {
+            db.post("js6projects", body).then(() => {
+                context.dispatch("fetchProjects")
+            })
         }
     },
     getters: {

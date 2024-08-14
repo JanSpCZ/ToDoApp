@@ -36,9 +36,6 @@ export default {
       data: body
     }).then((response) => {
       return response.data.data
-    }).catch((error) => {
-      store.commit('setErrorMsg', 'some error happened when saving record')
-      router.push('/error')
     })
   },
   put (path, body) {
