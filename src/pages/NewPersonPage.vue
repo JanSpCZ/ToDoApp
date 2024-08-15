@@ -14,7 +14,7 @@
             <input id="position" v-model="position" class="my-input">
         </div>
         <div class="btn-container">
-            <button class="submit-button">Add new person</button>
+            <button class="submit-button">Submit</button>
         </div>
         <!-- TODO: inputy vypadají špatně po zadání textu -->
     </form>

@@ -1,11 +1,16 @@
 <template>
     <ul>
-        <li v-for="(project, index) in projects" @click="toggleDescription(index, project.id)">
-            {{ project.project }}
-            <span v-if="clickedProject === index" class="description">{{ project.description }}</span>
-            <span v-if="clickedProject === index" class="tasks-list">
+        <li v-for="(project, index) in projects" :key="project.id" @click="toggleDescription(index, project.id)">
+            <div class="project-header">
+                <div class="project-name">
+                    {{ project.project }}
+                </div>
+                <span class="edit-project" @click="$router.push('/newproject/' + project.id)"><font-awesome-icon :icon="['fas', 'gear']" /></span>
+            </div>
+            <div v-if="clickedProject === index" class="description">{{ project.description }}</div>
+            <div v-if="clickedProject === index" class="tasks-list">
                 <TTasksList :projectId="project.id" />
-            </span>
+            </div>
         </li>
     </ul>
 </template>
@@ -60,16 +65,21 @@ li {
     padding: .5rem 0;
     cursor: pointer;
     transition: color .2s linear;
+    display: grid;
+    grid-template-rows: auto auto;
+    row-gap: .5rem;
 }
 
-li:hover {
-    color: #00ADB5;
+.project-header {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    column-gap: 1rem;
 }
 
 .description {
     color: #a1a1a1;
     width: 100%;
-    margin-left: 10%;
 }
 
 li:hover .description {
@@ -78,6 +88,24 @@ li:hover .description {
 
 .tasks-list {
     color: #fff;
+    padding-left: 5%;
+}
+
+.project-name {
+    transition: color .2s linear;
+}
+
+.project-name:hover {
+    color: #00ADB5;
+}
+
+.edit-project {
+    padding: .3rem;
+    transition: color .2s linear;
+}
+
+.edit-project:hover {
+    color: #00ADB5;
 }
 
 </style>

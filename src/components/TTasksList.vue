@@ -2,7 +2,7 @@
     <div v-if="!loading">
         <div v-if="tasks.length">
             <ul>
-                <li v-for="task in tasks">
+                <li v-for="task in tasks" :key="task.id">
                     {{ task.task }}
                 </li>
             </ul>

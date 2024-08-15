@@ -7,6 +7,7 @@ const store = createStore({
         projects: [],
         tasks: [],
         persons: [],
+        projectToEdit: {},
         errorMsg: ""
     },
     mutations: {
@@ -15,6 +16,9 @@ const store = createStore({
         },
         setProjectsTasks(state, value) {
             state.tasks = value
+        },
+        setProjectToEdit(state, record) {
+            state.projectToEdit = record
         },
         setTasks(state, value) {
             state.tasks = value
@@ -37,6 +41,11 @@ const store = createStore({
                 context.commit("setProjectsTasks", tasks)
             })
         },
+        fetchProjectToEdit(context, id) {
+            return db.get("js6projects/" + id).then((record) => {
+                context.commit("setProjectToEdit", record)
+            })
+        },
         fetchTasks (context) {
             return db.get("js6tasks").then((tasks) => {
                 context.commit("setTasks", tasks)
@@ -48,11 +57,17 @@ const store = createStore({
             })
         },
         addProject (context, body) {
-            db.post("js6projects", body).then(() => {
+            return db.post("js6projects", body).then(() => {
+                context.dispatch("fetchProjects")
+            })
+        },
+        editProject (context, body) {
+            return db.put("js6projects", body).then(() => {
                 context.dispatch("fetchProjects")
             })
         },
         addPerson (context, body) {
+            console.log(body)
             db.post("js6persons", body).then(() => {
                 context.dispatch("fetchPersons")
             })

@@ -1,9 +1,16 @@
 <template>
     <nav>
         <ul>
-            <li v-for="link in links">
-                <div v-if="$route.path === link.path">{{ link.label }}</div>
-                <RouterLink v-else :to="link.path">{{ link.label }}</RouterLink>
+            <li v-for="link in links" :key="link.id">
+                <div v-if="$route.path === link.path">
+                    <font-awesome-icon :icon="link.icon" />
+                    <span>{{ link.label }}</span>
+                </div>
+                
+                <RouterLink v-else :to="link.path">
+                    <font-awesome-icon :icon="link.icon" />
+                    <span>{{ link.label }}</span>
+                </RouterLink>
             </li>
         </ul>
     </nav>
@@ -50,12 +57,14 @@ a {
     color: #f4f7f5;
     transition: color .2s linear;
     font-weight: 500;
+    gap: 10px;
 }
 a:hover {
     color: #00ADB5;
 }
 div {
     display: flex;
+    gap: 10px;
     padding: .3em .7em;
     color: #00ADB5;
     font-weight: 500;

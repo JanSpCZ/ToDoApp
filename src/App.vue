@@ -15,10 +15,10 @@ export default {
   data () {
     return {
       links: [
-        { path: "/", label: "Home" },
-        { path: "/projects", label: "Projects" },
-        { path: "/tasks", label: "Tasks" },
-        { path: "/people", label: "People" },
+        { path: "/", label: "Home", icon: ["fas", "house"] },
+        { path: "/projects", label: "Projects", icon: ["fas", "rocket"] },
+        { path: "/tasks", label: "Tasks", icon: ["fas", "sitemap"] },
+        { path: "/people", label: "People", icon: ["fas", "users"] },
       ]
     }
   },

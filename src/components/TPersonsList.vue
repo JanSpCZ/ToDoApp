@@ -1,7 +1,7 @@
 <template>
     <div v-if="persons.length">
         <ul>
-            <li v-for="person in persons">
+            <li v-for="person in persons" :key="person.id">
                 {{ `${person.first} ${person.last}` }}
             </li>
         </ul>

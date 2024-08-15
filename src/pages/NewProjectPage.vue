@@ -10,7 +10,7 @@
             <input id="description" v-model="description" class="my-input">
         </div>
         <div class="btn-container">
-            <button class="submit-button">Add new project</button>
+            <button class="submit-button">Submit</button>
         </div>
     </form>
 </template>
@@ -23,15 +23,30 @@ export default {
     data () {
         return {
             project: "",
-            description: ""
+            description: "",
+            id: null
+        }
+    },
+    created () {
+        if (this.$route.params.id) {
+            this.$store.dispatch("fetchProjectToEdit", this.$route.params.id).then(() => {
+                this.project = this.$store.state.projectToEdit.project
+                this.description = this.$store.state.projectToEdit.description
+                this.id = this.$route.params.id
+            })
         }
     },
     methods: {
         onSubmit() {
-            this.$store.dispatch("addProject", {
+            const body = {
                 project: this.project,
                 description: this.description
-            }).then(() => {
+            }
+            if(this.id) {
+                body.id = this.id
+            }
+            const action = this.id ? "editProject" : "addProject"
+            this.$store.dispatch(action, body).then(() => {
                 this.$router.push("/projects")
             })
         }
