@@ -17,7 +17,7 @@ export default {
       links: [
         { path: "/", label: "Home", icon: ["fas", "house"] },
         { path: "/projects", label: "Projects", icon: ["fas", "rocket"] },
-        { path: "/tasks", label: "Tasks", icon: ["fas", "sitemap"] },
+        { path: "/tasks", label: "Tasks", icon: ["fas", "list-check"] },
         { path: "/people", label: "People", icon: ["fas", "users"] },
       ]
     }

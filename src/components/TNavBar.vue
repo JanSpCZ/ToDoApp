@@ -52,6 +52,7 @@ li {
 }
 a {
     display: flex;
+    align-items: center;
     padding: .3em .7em;
     text-decoration: none;
     color: #f4f7f5;
@@ -64,6 +65,7 @@ a:hover {
 }
 div {
     display: flex;
+    align-items: center;
     gap: 10px;
     padding: .3em .7em;
     color: #00ADB5;
