@@ -62,12 +62,11 @@ ul {
 li {
     border-bottom: 3px solid #393E46;
     max-width: 400px;
-    padding: .5rem 0;
+    padding: .3rem 0;
     cursor: pointer;
     transition: color .2s linear;
     display: grid;
     grid-template-rows: auto auto;
-    row-gap: .5rem;
 }
 
 .project-header {

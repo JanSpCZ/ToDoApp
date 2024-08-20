@@ -30,7 +30,7 @@ export default {
 <style scoped>
 
 nav {
-    width: 15vw;
+    flex-basis: 10vw;
     height: 100vh;
     top: 10vh;
     left: 0;

@@ -16,7 +16,7 @@ import TPersonsList from '@/components/TPersonsList.vue'
 export default {
     name: "PersonsPage",
     computed: {
-        ...mapState(["persons", "errorMsg"])
+        ...mapState(["persons"])
     },
     created () {
         this.fetchPersons()

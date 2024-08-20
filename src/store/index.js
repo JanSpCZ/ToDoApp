@@ -7,6 +7,7 @@ const store = createStore({
         projects: [],
         tasks: [],
         persons: [],
+        positions: [],
         projectToEdit: {},
         errorMsg: ""
     },
@@ -25,6 +26,9 @@ const store = createStore({
         },
         setPersons(state, value) {
             state.persons = value
+        },
+        setPositions(state, value) {
+            state.positions = value
         },
         setErrorMsg(state, value) {
             state.errorMsg = value
@@ -56,6 +60,11 @@ const store = createStore({
                 context.commit("setPersons", persons)
             })
         },
+        fetchPositions (context) {
+            return db.get("js6positions").then((positions) => {
+                context.commit("setPositions", positions)
+            })
+        },
         addProject (context, body) {
             return db.post("js6projects", body).then(() => {
                 context.dispatch("fetchProjects")
@@ -67,7 +76,6 @@ const store = createStore({
             })
         },
         addPerson (context, body) {
-            console.log(body)
             db.post("js6persons", body).then(() => {
                 context.dispatch("fetchPersons")
             })

@@ -14,9 +14,8 @@ html {
 
 body {
   position: relative;
-  left: 15vw;
-  margin-left: 5vw;
-  margin-top: 10vh;
+  left: 250px;
+  top: 10vh;
   height: 100vh;
   overflow-x: hidden;
 }
