@@ -9,6 +9,7 @@ const store = createStore({
         persons: [],
         positions: [],
         projectToEdit: {},
+        taskToEdit: {},
         errorMsg: ""
     },
     mutations: {
@@ -29,6 +30,9 @@ const store = createStore({
         },
         setPositions(state, value) {
             state.positions = value
+        },
+        setTaskToEdit(state, record) {
+            state.taskToEdit = record
         },
         setErrorMsg(state, value) {
             state.errorMsg = value
@@ -76,8 +80,23 @@ const store = createStore({
             })
         },
         addPerson (context, body) {
-            db.post("js6persons", body).then(() => {
+            return db.post("js6persons", body).then(() => {
                 context.dispatch("fetchPersons")
+            })
+        },
+        addTask (context, body) {
+            return db.post("js6tasks", body).then(() => {
+                context.dispatch("fetchTasks")
+            })
+        },
+        editTask (context, body) {
+            return db.put("js6tasks", body).then(() => {
+                context.dispatch("fetchTasks")
+            })
+        },
+        fetchTaskToEdit (context, id) {
+            return db.get("js6tasks/" + id).then((record) => {
+                context.commit("setTaskToEdit", record)
             })
         }
     },

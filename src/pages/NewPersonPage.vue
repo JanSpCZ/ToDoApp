@@ -10,8 +10,8 @@
             <input id="last-name" v-model="last" class="my-input" required>
         </div>
         <div class="input-container select">
-            <label for="positionid">Position:</label>
-            <select id="positionid" v-model="positionid" required>
+            <label for="position-id">Position:</label>
+            <select id="position-id" v-model="positionid" required>
                 <option value=""></option>
                 <option v-for="option in positions" :value="option.id" :key="option.id">{{ option.position }}</option>
             </select>
@@ -48,7 +48,7 @@ export default {
                 last: this.last,
                 positionid: this.positionid
             }).then(() => {
-                this.$router.push("/people") //TODO: dodělat, databáze nechce přijímat data
+                this.$router.push("/people")
             })
         }
     }
@@ -58,39 +58,5 @@ export default {
 </script>
 
 <style scoped>
-.select {
-    position: relative;
-}
 
-select {
-    appearance: none;
-    position: relative;
-    width: 55%;
-    padding: .3rem;
-    background-color: #222831;
-    color: #fff;
-    border: 0;
-    outline: 0;
-    border-bottom: 3px solid #393E46;
-    cursor: pointer;
-}
-
-select:focus {
-    border-bottom: 3px solid #00ADB5;
-}
-
-.select::after {
-    content: '\25BC';
-    position: absolute;
-    top: 0;
-    right: 0;
-    outline: 0;
-    background-color: #222831;
-    transition: .2s all linear;
-    pointer-events: none;
-}
-
-.select:hover::after {
-    color: #00ADB5;
-}
 </style>

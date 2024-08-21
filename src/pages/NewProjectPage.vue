@@ -49,6 +49,7 @@ export default {
             this.$store.dispatch(action, body).then(() => {
                 this.$router.push("/projects")
             })
+            console.log(body)
         }
     }
 }

@@ -71,12 +71,70 @@ body {
   padding: .3rem;
   background-color: #222831;
   color: #fff;
+  font-size: medium;
   border: none;
   border-bottom: 3px solid #393E46;
   outline: none;
 }
 
 .my-input:focus {
+  border-bottom: 3px solid #00ADB5;
+}
+
+.select {
+  position: relative;
+}
+
+select {
+  appearance: none;
+  position: relative;
+  width: 55%;
+  padding: .3rem;
+  background-color: #222831;
+  color: #fff;
+  font-size: medium;
+  border: 0;
+  outline: 0;
+  border-bottom: 3px solid #393E46;
+  cursor: pointer;
+}
+
+select:focus {
+  border-bottom: 3px solid #00ADB5;
+}
+
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  outline: 0;
+  background-color: #222831;
+  transition: .2s all linear;
+  pointer-events: none;
+}
+
+.select:hover::after {
+  color: #00ADB5;
+}
+
+input[type="date"] { 
+  background: transparent;
+  color: white;
+  padding: .4rem 0;
+  border: 0;
+  border-bottom: 3px solid #393E46;
+  outline: none;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background-color: #fff;
+  padding: .2rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type="date"]:focus {
   border-bottom: 3px solid #00ADB5;
 }
 

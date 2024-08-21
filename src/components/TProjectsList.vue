@@ -29,7 +29,7 @@ export default {
         }
     },
     computed: {
-        ...mapState(["projects", "tasks", "errorMsg"])
+        ...mapState(["projects", "tasks"])
     },
     created () {
         this.fetchProjects()

@@ -2,7 +2,7 @@
     <div v-if="!loading">
         <div v-if="tasks.length">
             <ul>
-                <li v-for="task in tasks" :key="task.id">
+                <li @click="$router.push('/newtask/' + task.id)" v-for="task in tasks" :key="task.id">
                     {{ task.task }}
                 </li>
             </ul>

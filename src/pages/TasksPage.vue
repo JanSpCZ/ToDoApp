@@ -1,5 +1,10 @@
 <template>
-    <h3 class="my-h3">Tasks</h3>
+    <div class="add-header">
+        <h3 class="my-h3">Tasks</h3>
+        <div class="plus-btn" @click="onClick">
+            +
+        </div>
+    </div>    
     <TTasksList projectId="All" />
 </template>
 
@@ -10,10 +15,13 @@ import TTasksList from '@/components/TTasksList.vue'
 export default {
     name: "TasksPage",
     computed: {
-        ...mapState(["tasks", "errorMsg"])
+        ...mapState(["tasks"])
     },
     methods: {
         ...mapActions(["fetchTasks"]),
+        onClick() {
+            this.$router.push("/newtask")
+        }
     },
     components: { TTasksList }
 }
