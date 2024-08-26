@@ -34,16 +34,16 @@ body {
 }
 
 .add-header {
-  max-width: 400px;
+  width: 50vw;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .plus-btn {
   cursor: pointer;
   font-size: xx-large;
-  padding: 0 .5rem;
+  padding: .2rem;
   transition: color .2s linear;
 }
 

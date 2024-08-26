@@ -10,6 +10,7 @@ const store = createStore({
         positions: [],
         projectToEdit: {},
         taskToEdit: {},
+        projectIdToTask: null,
         errorMsg: ""
     },
     mutations: {
@@ -34,6 +35,15 @@ const store = createStore({
         setTaskToEdit(state, record) {
             state.taskToEdit = record
         },
+        setProjectIdToTask(state, value) {
+            state.projectIdToTask = value
+        },
+        setUpdateTask(state, updatedTask) {
+            const index = state.tasks.findIndex(task => task.id === updatedTask.id);
+            if (index !== -1) {
+                state.tasks.splice(index, 1, updatedTask)
+            }
+        },
         setErrorMsg(state, value) {
             state.errorMsg = value
         }
@@ -49,7 +59,7 @@ const store = createStore({
                 context.commit("setProjectsTasks", tasks)
             })
         },
-        fetchProjectToEdit(context, id) {
+        fetchProjectToEdit (context, id) {
             return db.get("js6projects/" + id).then((record) => {
                 context.commit("setProjectToEdit", record)
             })
@@ -97,6 +107,11 @@ const store = createStore({
         fetchTaskToEdit (context, id) {
             return db.get("js6tasks/" + id).then((record) => {
                 context.commit("setTaskToEdit", record)
+            })
+        },
+        updateTask (context, payload) {
+            return db.put(`js6tasks/${payload.data.id}`, payload).then(() => {
+                context.commit("setUpdateTask", payload.data)
             })
         }
     },

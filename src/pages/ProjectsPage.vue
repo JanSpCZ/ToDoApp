@@ -2,7 +2,7 @@
     <div class="add-header">
         <h3 class="my-h3">Projects</h3>
         <div class="plus-btn" @click="onClick">
-            +
+            <font-awesome-icon :icon="['fas', 'plus']" />
         </div>
     </div>
     <TProjectsList/>

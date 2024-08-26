@@ -10,8 +10,9 @@ import { library } from "@fortawesome/fontawesome-svg-core"
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome"
 
 //Import used icons here
-import { faGear, faHouse, faRocket, faUsers, faUserPlus, faListCheck } from "@fortawesome/free-solid-svg-icons"
-library.add(faGear, faHouse, faRocket, faUsers, faUserPlus, faListCheck)
+import { faGear, faHouse, faRocket, faUsers, faUserPlus, faListCheck, faCirclePlus, faTriangleExclamation, faTrash, faPlus } from "@fortawesome/free-solid-svg-icons"
+
+library.add(faGear, faHouse, faRocket, faUsers, faUserPlus, faListCheck, faCirclePlus, faTriangleExclamation, faTrash, faPlus)
 
 const app = createApp(App)
 

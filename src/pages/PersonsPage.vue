@@ -1,5 +1,5 @@
 <template>
-    <div class="add-header">
+    <div class="add-person-header">
         <h3 class="my-h3">People</h3>
         <div class="plus-btn" @click="onClick">
             <font-awesome-icon :icon="['fas', 'user-plus']" />
@@ -33,6 +33,11 @@ export default {
 </script>
 
 <style scoped>
-
+.add-person-header {
+  max-width: 300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 </style>

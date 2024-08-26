@@ -45,9 +45,6 @@ export default {
       data: body
     }).then((response) => {
       return response.data.data
-    }).catch((error) => {
-      store.commit('setErrorMsg', 'some error happened when editing record')
-      router.push('/error')
     })
   },
   delete (path, body) {

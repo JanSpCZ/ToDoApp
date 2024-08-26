@@ -1,5 +1,5 @@
 <template>
-    <h3 class="my-h3">New Task</h3>
+    <h3 class="my-h3">{{ header }}</h3>
     <form @submit.prevent="onSubmit" class="my-form">
         <div class="input-container">
             <label for="task-name">Task name:</label>
@@ -16,14 +16,14 @@
             <label for="completed">Completed:</label>
             <select id="completed" v-model="completed" class="my-input" required>
                 <option value=""></option>
-                <option v-for="option in completedOptions" :value="option.value" class>{{ option.label }}</option>
+                <option v-for="option in completedOptions" :key="option.completed" :value="option.value" class>{{ option.label }}</option>
             </select>
         </div>
         <div class="input-container select">
             <label for="priority">Priority:</label>
             <select id="priority" v-model="priority" class="my-input" required>
                 <option value=""></option>
-                <option v-for="option in priorityOptions" :value="option.value" class>{{ option.label }}</option>
+                <option v-for="option in priorityOptions" :key="option.priority" :value="option.value" class>{{ option.label }}</option>
             </select>
         </div>
         <div class="input-container">
@@ -63,7 +63,10 @@ export default {
         }
     },
     computed: {
-        ...mapState(["projects"])
+        ...mapState(["projects"]),
+        header() {
+            return this.$route.params.id ? "Edit task" : "New task"
+        }
     },
     created () {
         this.fetchProjects()
@@ -78,6 +81,13 @@ export default {
                 this.id = this.$route.params.id
             })
         }
+
+        if (this.$store.state.projectIdToTask) {
+            this.projectid = this.$store.state.projectIdToTask
+        }
+    },
+    unmounted () {
+        this.$store.commit("setProjectIdToTask", null)
     },
     methods: {
         ...mapActions(["fetchProjects"]),
@@ -97,7 +107,6 @@ export default {
             this.$store.dispatch(action, body).then(() => {
                 this.$router.push("/tasks")
             })
-            console.log(body.id)
         }
     }
 }

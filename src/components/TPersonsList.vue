@@ -30,6 +30,7 @@ export default {
 <style scoped>
 div {
     cursor: default;
+    margin: 3rem 0;
 }
 
 ul {
