@@ -1,7 +1,7 @@
 <template>
     <div v-if="persons.length">
         <ul>
-            <li v-for="person in persons" :key="person.id">
+            <li v-for="person in persons" :key="person.id" @click="$router.push('/newperson/' + person.id)">
                 {{ `${person.first} ${person.last}` }}
             </li>
         </ul>
@@ -30,7 +30,7 @@ export default {
 <style scoped>
 div {
     cursor: default;
-    margin: 3rem 0;
+    display: flex;
 }
 
 ul {

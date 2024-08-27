@@ -113,7 +113,6 @@ export default {
 
 <style scoped>
 ul {
-    margin: 3rem 0;
     list-style-type: none;
 }
 

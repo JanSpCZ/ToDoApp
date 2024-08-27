@@ -18,6 +18,9 @@
                         <div class="tasks-date">
                             {{ task.date }}
                         </div>
+                        <div class="project-icon" @click.stop="onDeleteClick(task.id)">
+                            <font-awesome-icon :icon="['fas', 'trash']" />
+                        </div>
                     </div>
                 </li>
             </ul>
@@ -27,9 +30,22 @@
             <p>No tasks to show</p>
         </div>
     </div>
+    <TModal 
+        v-if="showModal"
+        :msg="modalMsg"
+        cancelBtn
+        :confirmBtn="modalConfirmBtn"
+        :cancelLabel="cancelBtnLabel"
+        @close-me="closeModal"
+        @cancel="closeModal"
+        @confirm="deleteTask"
+    />
 </template>
 
 <script>
+
+import db from "@/utils/db"
+import TModal from "./TModal.vue"
 
 export default {
     name: "TTasksList",
@@ -41,7 +57,12 @@ export default {
     },
     data () {
         return {
-            loading: true
+            loading: true,
+            showModal: false,
+            modalMsg: "",
+            modalCancelBtn: false,
+            taskIdToDelete: null,
+            CancelBtnLabel: ""
         }
     },
     created () {
@@ -68,6 +89,38 @@ export default {
                 return "Low"
             }
         },
+        onDeleteClick(id) {
+            this.taskIdToDelete = id
+            db.get("js6tasks/" + id).then(data => {
+                if(data.completed === 1) {
+                    this.modalMsg = "Are you sure to delete " + this.tasks.find(task => task.id === id).task + "?"                
+                    this.modalConfirmBtn = true
+                    this.cancelBtnLabel = "Cancel"
+                } else {
+                    this.modalMsg = "Can not delete uncompleted task"
+                    this.modalConfirmBtn = false
+                    this.cancelBtnLabel = "OK"
+                }
+                this.showModal = true
+            })
+        },
+        closeModal() {
+            this.showModal = false
+            this.modalMsg = ""
+            this.taskIdToDelete = null
+        },
+        deleteTask() {
+            //const action = this.projectId === "All" ? "fetchTasks" : "fetchProjectsTasks"
+            db.delete("js6tasks", {id: this.taskIdToDelete}).then(() => {
+                this.closeModal()
+                this.loading = true
+                //TODO: rozdělit mazání tasks v projektu a samostatně
+                this.$store.dispatch("fetchTasks").then(() => {
+                    this.loading = false
+                })
+            })
+        },
+        //TODO: checkboxy nejsou kamarádi
         toggleCheckbox(task) {
             const updatedTask = {
                 data: {
@@ -82,7 +135,8 @@ export default {
 
             this.$store.dispatch("updateTask", updatedTask)
         }
-    }
+    },
+    components: { TModal }
 }
 </script>
 
@@ -145,5 +199,14 @@ li {
 .task-name-container {
     display: flex;
     gap: 10px;
+}
+
+.project-icon{
+    padding: .3rem;
+    transition: color .2s linear;
+}
+
+.project-icon:hover{
+    color: #00ADB5;
 }
 </style>

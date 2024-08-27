@@ -49,6 +49,11 @@ const router = createRouter({
       path: "/newtask/:id",
       name: "taskEdit",
       component: () => import("../pages/NewTaskPage.vue")
+    },
+    {
+      path: "/newperson/:id",
+      name: "personEdit",
+      component: () => import("../pages/NewPersonPage.vue")
     }
   ]
 })

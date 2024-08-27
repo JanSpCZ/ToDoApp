@@ -29,7 +29,5 @@ export default {
 </script>
 
 <style scoped>
-.add-header {
-    margin-bottom: 3rem;
-}
+
 </style>

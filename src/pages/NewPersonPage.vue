@@ -1,5 +1,5 @@
 <template>
-    <h3 class="my-h3">New Person</h3>
+    <h3 class="my-h3">{{ header }}</h3>
     <form @submit.prevent="onSubmit" class="my-form">
         <div class="input-container">
             <label for="first-name">First name:</label>
@@ -35,19 +35,37 @@ export default {
         }
     },
     computed: {
-        ...mapState(["positions"])
+        ...mapState(["positions"]),
+        header() {
+            return this.$route.params.id ? "Edit Person" : "New Person"
+        }
     },
     created () {
         this.fetchPositions()
+
+        if(this.$route.params.id) {
+            this.$store.dispatch("fetchPersonToEdit", this.$route.params.id).then(() => {
+                this.first = this.$store.state.personToEdit.first
+                this.last = this.$store.state.personToEdit.last
+                this.positionid = this.$store.state.personToEdit.positionid
+                this.id = this.$route.params.id
+            })
+        }
     },     
     methods: {
         ...mapActions(["fetchPositions"]),
         onSubmit() {
-            this.$store.dispatch("addPerson", {
+            const body = {
                 first: this.first,
                 last: this.last,
                 positionid: this.positionid
-            }).then(() => {
+            }
+            if (this.id) {
+                body.id = this.id
+            }
+            const action = this.id ? "editPerson" : "addPerson"
+
+            this.$store.dispatch(action, body).then(() => {
                 this.$router.push("/people")
             })
         }
