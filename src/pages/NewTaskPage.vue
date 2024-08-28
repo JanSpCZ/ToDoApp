@@ -1,40 +1,41 @@
 <template>
-    <h3 class="my-h3">{{ header }}</h3>
-    <form @submit.prevent="onSubmit" class="my-form">
-        <div class="input-container">
-            <label for="task-name">Task name:</label>
-            <input id="task-name" v-model="task" class="my-input" required>
-        </div>
-        <div class="input-container select">
-            <label for="project-id">Project:</label>
-            <select id="project-id" v-model="projectid" required>
-                <option value=""></option>
-                <option v-for="option in projects" :value="option.id" :key="option.id">{{ option.project }}</option>
-            </select>
-        </div>
-        <div class="input-container select">
-            <label for="completed">Completed:</label>
-            <select id="completed" v-model="completed" class="my-input" required>
-                <option value=""></option>
-                <option v-for="option in completedOptions" :key="option.completed" :value="option.value" class>{{ option.label }}</option>
-            </select>
-        </div>
-        <div class="input-container select">
-            <label for="priority">Priority:</label>
-            <select id="priority" v-model="priority" class="my-input" required>
-                <option value=""></option>
-                <option v-for="option in priorityOptions" :key="option.priority" :value="option.value" class>{{ option.label }}</option>
-            </select>
-        </div>
-        <div class="input-container">
-            <label for="date">Date:</label>
-            <input id="date" type="date" v-model="date" required>
-        </div>
-        <div class="btn-container">
-            <button class="submit-button">Submit</button>
-        </div>
-    </form>
-
+    <div>
+        <h3 class="my-h3">{{ header }}</h3>
+        <form @submit.prevent="onSubmit" class="my-form">
+            <div class="input-container">
+                <label for="task-name">Task name:</label>
+                <input id="task-name" v-model="task" class="my-input" required>
+            </div>
+            <div class="input-container select">
+                <label for="project-id">Project:</label>
+                <select id="project-id" v-model="projectid" required>
+                    <option value=""></option>
+                    <option v-for="option in projects" :value="option.id" :key="option.id">{{ option.project }}</option>
+                </select>
+            </div>
+            <div class="input-container select">
+                <label for="completed">Completed:</label>
+                <select id="completed" v-model="completed" class="my-input" required>
+                    <option value=""></option>
+                    <option v-for="option in completedOptions" :key="option.completed" :value="option.value" class>{{ option.label }}</option>
+                </select>
+            </div>
+            <div class="input-container select">
+                <label for="priority">Priority:</label>
+                <select id="priority" v-model="priority" class="my-input" required>
+                    <option value=""></option>
+                    <option v-for="option in priorityOptions" :key="option.priority" :value="option.value" class>{{ option.label }}</option>
+                </select>
+            </div>
+            <div class="input-container">
+                <label for="date">Date:</label>
+                <input id="date" type="date" v-model="date" required>
+            </div>
+            <div class="btn-container">
+                <button class="submit-button">Submit</button>
+            </div>
+        </form>
+    </div>        
 </template>
 
 <script>

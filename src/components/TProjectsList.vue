@@ -5,6 +5,9 @@
                 <div class="project-name" @click="toggleDescription(index, project.id)">
                     {{ project.project }}
                 </div>
+                <div @click="newProjectTask(project.id)" class="add-task">
+                    <font-awesome-icon :icon="['fas', 'circle-plus']" />
+                </div>
                 <div class="project-icon" @click="$router.push('/newproject/' + project.id)">
                     <font-awesome-icon :icon="['fas', 'gear']" />
                 </div>
@@ -12,11 +15,14 @@
                     <font-awesome-icon :icon="['fas', 'trash']" />
                 </div>
             </div>
-            <div v-if="clickedProject === index" class="description">{{ project.description }}</div>
-            <div v-if="clickedProject === index" @click="newProjectTask(project.id)" class="add-task"><font-awesome-icon :icon="['fas', 'circle-plus']" /></div>
-            <div v-if="clickedProject === index" class="tasks-list">
-                <TTasksList :projectId="project.id" />
-            </div>
+            <transition name="fade">
+                <div  v-if="clickedProject === index" class="desc-container">
+                    <div class="description">{{ project.description }}</div>
+                    <div class="tasks-list">
+                        <TTasksList :projectId="project.id" />
+                    </div>
+                </div>
+            </transition>
         </li>
     </ul>
     <TModal 
@@ -112,6 +118,25 @@ export default {
 </script>
 
 <style scoped>
+.fade-enter-active,
+.fade-leave-active {
+    transition: all .4s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+}
+
+.fade-enter-to,
+.fade-leave-from {
+    opacity: 1;
+    max-height: 500px;
+    overflow: hidden;
+}
+
 ul {
     list-style-type: none;
 }
@@ -128,7 +153,7 @@ li {
 
 .project-header {
     display: grid;
-    grid-template-columns: 1fr auto auto;
+    grid-template-columns: 1fr auto auto auto;
     align-items: center;
     column-gap: 1rem;
 }

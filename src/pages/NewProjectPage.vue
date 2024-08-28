@@ -1,18 +1,20 @@
 <template>
-    <h3 class="my-h3">{{ header }}</h3>
-    <form @submit.prevent="onSubmit" class="my-form">
-        <div class="input-container">
-            <label for="name">Project name:</label>
-            <input id="name" v-model="project" class="my-input">
-        </div>
-        <div class="input-container">
-            <label for="description">Project description:</label>
-            <textarea id="description" v-model="description" class="my-input" rows="5"></textarea>
-        </div>
-        <div class="btn-container">
-            <button class="submit-button">Submit</button>
-        </div>
-    </form>
+    <div>
+        <h3 class="my-h3">{{ header }}</h3>
+        <form @submit.prevent="onSubmit" class="my-form">
+            <div class="input-container">
+                <label for="name">Project name:</label>
+                <input id="name" v-model="project" class="my-input">
+            </div>
+            <div class="input-container">
+                <label for="description">Project description:</label>
+                <textarea id="description" v-model="description" class="my-input my-textarea" rows="5"></textarea>
+            </div>
+            <div class="btn-container">
+                <button class="submit-button">Submit</button>
+            </div>
+        </form>
+    </div>
 </template>
 
 <script>

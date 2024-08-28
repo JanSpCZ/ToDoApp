@@ -119,8 +119,14 @@ select:focus {
   color: #00ADB5;
 }
 
-textarea {
+.my-textarea {
   resize: none;
+  border-right: 3px solid #393E46;
+  border-radius: 0 0 5px 0;
+}
+
+.my-textarea:focus {
+  border-right: 3px solid #00ADB5;
 }
 
 input[type="date"] { 

@@ -2,8 +2,10 @@
 
   <TNavBar :links="links" />
   
-  <RouterView>
-    
+  <RouterView v-slot="{ Component }">
+    <transition name="route" mode="out-in">
+      <component :is="Component"></component>
+    </transition>
   </RouterView>
 </template>
 
@@ -27,3 +29,23 @@ export default {
 
 </script>
 
+
+<style>
+.route-enter-from {
+  opacity: 0;
+  transform: translateY(-50px);
+}
+
+.route-enter-active {
+  transition: all .3s ease-out;
+}
+
+.route-leave-to {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.route-leave-active {
+  transition: all .3s ease-in;
+}
+</style>
