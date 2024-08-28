@@ -3,7 +3,7 @@
         <div v-if="tasks.length" class="tasks-container">
             <ul>
                 <li v-for="task in tasks" :key="task.id">
-                    <div class="task-name-container">
+                    <div class="tasks-name-container">
                         <input type="checkbox" v-model="task.completed" :checked="task.completed" @change="toggleCheckbox(task)">
                         <div class="tasks-name" @click="$router.push('/newtask/' + task.id)">{{ task.task }}</div>
                     </div>
@@ -110,12 +110,11 @@ export default {
             this.taskIdToDelete = null
         },
         deleteTask() {
-            //const action = this.projectId === "All" ? "fetchTasks" : "fetchProjectsTasks"
             db.delete("js6tasks", {id: this.taskIdToDelete}).then(() => {
                 this.closeModal()
                 this.loading = true
-                //TODO: rozdělit mazání tasks v projektu a samostatně
-                this.$store.dispatch("fetchTasks").then(() => {
+                const action = this.projectId === "All" ? "fetchTasks" : "fetchProjectsTasks"
+                this.$store.dispatch(action, this.projectId).then(() => {
                     this.loading = false
                 })
             })
@@ -146,6 +145,12 @@ export default {
     max-width: 50vw;
 }
 
+.tasks-name-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .tasks-description {
     display: flex;
     justify-content: space-between;
@@ -162,6 +167,7 @@ export default {
 .tasks-date {
     width: 5rem;
     text-align: end;
+    margin-right: 10px;
 }
 
 .tasks-name {

@@ -119,6 +119,10 @@ select:focus {
   color: #00ADB5;
 }
 
+textarea {
+  resize: none;
+}
+
 input[type="date"] { 
   background: transparent;
   color: white;

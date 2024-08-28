@@ -1,5 +1,5 @@
 <template>
-    <h3 class="my-h3">New Project</h3>
+    <h3 class="my-h3">{{ header }}</h3>
     <form @submit.prevent="onSubmit" class="my-form">
         <div class="input-container">
             <label for="name">Project name:</label>
@@ -7,7 +7,7 @@
         </div>
         <div class="input-container">
             <label for="description">Project description:</label>
-            <input id="description" v-model="description" class="my-input">
+            <textarea id="description" v-model="description" class="my-input" rows="5"></textarea>
         </div>
         <div class="btn-container">
             <button class="submit-button">Submit</button>
@@ -25,6 +25,11 @@ export default {
             project: "",
             description: "",
             id: null
+        }
+    },
+    computed: {
+        header() {
+            return this.$route.params.id ? "Edit project" : "New project"
         }
     },
     created () {
