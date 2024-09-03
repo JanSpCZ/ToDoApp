@@ -7,10 +7,12 @@
       <component :is="Component"></component>
     </transition>
   </RouterView>
+  <TCircles />
 </template>
 
 <script>
 import TNavBar from "@/components/TNavBar.vue"
+import TCircles from "@/components/TCircles.vue"
 
 export default {
   name: "App",
@@ -24,7 +26,7 @@ export default {
       ]
     }
   },
-  components: { TNavBar }
+  components: { TNavBar, TCircles }
 }
 
 </script>

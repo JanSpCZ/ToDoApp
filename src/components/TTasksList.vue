@@ -171,6 +171,7 @@ export default {
 }
 
 .tasks-name {
+    cursor: pointer;
     transition: color .2s linear;
 }
 
@@ -183,7 +184,6 @@ li {
     justify-content: space-between;
     margin: .8rem 0;
     transition: color .2s linear;
-    cursor: pointer;
 }
 
 .tasks-container:hover {
@@ -207,12 +207,13 @@ li {
     gap: 10px;
 }
 
-.project-icon{
+.project-icon {
+    cursor: pointer;
     padding: .3rem;
     transition: color .2s linear;
 }
 
-.project-icon:hover{
+.project-icon:hover {
     color: #00ADB5;
 }
 </style>

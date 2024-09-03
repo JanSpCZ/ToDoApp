@@ -12,7 +12,6 @@ const store = createStore({
         taskToEdit: {},
         personToEdit: {},
         projectIdToTask: null,
-        errorMsg: ""
     },
     mutations: {
         setProjects(state, value) {
@@ -48,9 +47,6 @@ const store = createStore({
                 state.tasks.splice(index, 1, updatedTask)
             }
         },
-        setErrorMsg(state, value) {
-            state.errorMsg = value
-        }
     },
     actions: {
         fetchProjects (context) {
@@ -133,7 +129,6 @@ const store = createStore({
         projects: (state) => state.projects,
         tasks: (state) => state.tasks,
         persons: (state) => state.persons,
-        errorMsg: (state) => state.errorMsg
     }
 })
 
