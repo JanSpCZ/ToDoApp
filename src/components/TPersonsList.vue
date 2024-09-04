@@ -96,35 +96,7 @@ export default {
 
 <style scoped>
 
-ul {
-    list-style-type: none;
-}
-
 li {
     margin: .5rem 0;
 }
-
-.person-container {
-    max-width: 50vw;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.person-name,
-.trash-icon {
-    cursor: pointer;
-    transition: color .2s linear;
-}
-
-.person-name:hover,
-.trash-icon:hover {
-    color: #00ADB5;
-}
-
-.trash-icon {
-    padding: .3rem;
-
-}
-
 </style>

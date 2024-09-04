@@ -11,6 +11,7 @@ const store = createStore({
         projectToEdit: {},
         taskToEdit: {},
         personToEdit: {},
+        personsTasks: [],
         projectIdToTask: null,
     },
     mutations: {
@@ -40,6 +41,9 @@ const store = createStore({
         },
         setProjectIdToTask(state, value) {
             state.projectIdToTask = value
+        },
+        setPersonsTasks(state, data) {
+            state.personsTasks = data
         },
         setUpdateTask(state, updatedTask) {
             const index = state.tasks.findIndex(task => task.id === updatedTask.id);
@@ -117,6 +121,11 @@ const store = createStore({
         fetchTaskToEdit (context, id) {
             return db.get("js6tasks/" + id).then((record) => {
                 context.commit("setTaskToEdit", record)
+            })
+        },
+        fetchPersonsTasks (context, payload) {
+            return db.get("js6personstasks?" + payload.filter + "=" + payload.id).then(data => {
+                context.commit("setPersonsTasks", data)
             })
         },
         updateTask (context, payload) {

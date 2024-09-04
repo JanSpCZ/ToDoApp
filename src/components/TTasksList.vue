@@ -43,7 +43,7 @@
 </template>
 
 <script>
-
+//TODO: zobrazení modálu pro mazání tasks, pokud jsou k nim přiřazení lidé
 import db from "@/utils/db"
 import TModal from "./TModal.vue"
 

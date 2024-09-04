@@ -35,11 +35,43 @@
                 <button class="submit-button">Submit</button>
             </div>
         </form>
-    </div>        
+
+        <div v-if="isEdit">
+            <h3>Assigned people:</h3>
+            <ul v-if="personsTasks.length">
+                <li v-for="person in personsTasks" :key="person.id">
+                    <div class="person-container">
+                        <div class="person-name">
+                            {{ `${person.first} ${person.last}, ${person.position}` }}
+                        </div>
+                        <div class="trash-icon" @click="onDeletePersonClick(person.id)">
+                            <font-awesome-icon :icon="['fas', 'trash']" />
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div v-else>Not a single soul</div>
+            
+            <h3>Assign a person</h3>
+            <div class="assign-form">
+                <div class="input-container select">
+                    <label for="addPerson">Choose a person:</label>
+                    <select id="addPerson" v-model="selectValue">
+                        <option value=""></option>
+                        <option v-for="person in personsToSelect" :value="person.id" :key="person.id">{{ `${person.first} ${person.last}` }}</option>
+                    </select>
+                </div>
+                <div>
+                    <button @click="onSaveClick" class="submit-button">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>   
 </template>
 
 <script>
 import { mapActions, mapState } from 'vuex';
+import db from '@/utils/db.js';
 
 
 export default {
@@ -48,6 +80,7 @@ export default {
         return {
             task: "",
             projectid: null,
+            selectValue: "",
             completed: null,
             completedOptions: [
                 { label: "Yes", value: 1},
@@ -67,6 +100,19 @@ export default {
         ...mapState(["projects"]),
         header() {
             return this.$route.params.id ? "Edit task" : "New task"
+        },
+        personsTasks() {
+            return this.$store.state.personsTasks
+        },
+        persons() {
+            return this.$store.state.persons
+        },
+        personsToSelect() {
+            const ids = this.personsTasks.map(obj => obj.personid)
+            return this.persons.filter(person => ids.indexOf(person.id) < 0)
+        },
+        isEdit() {
+            return this.$route.params.id
         }
     },
     created () {
@@ -81,7 +127,11 @@ export default {
                 this.date = this.$store.state.taskToEdit.date
                 this.id = this.$route.params.id
             })
+            this.$store.dispatch("fetchPersonsTasks", { filter: "taskid", id: this.$route.params.id })
         }
+        this.$store.dispatch("fetchPersons")
+
+
 
         if (this.$store.state.projectIdToTask) {
             this.projectid = this.$store.state.projectIdToTask
@@ -107,6 +157,24 @@ export default {
 
             this.$store.dispatch(action, body).then(() => {
                 this.$router.push("/tasks")
+            })
+        },
+        onSaveClick() {
+            if (!this.selectValue) {
+                return
+            }
+            db.get("js6personstasks?personid=" + this.selectValue + "&taskid=" + this.$route.params.id).then((data) => {
+                if(!data.length) {
+                    db.post("js6personstasks", {personid: this.selectValue, taskid: this.$route.params.id}).then(() =>{
+                        this.selectValue = ""
+                        this.$store.dispatch("fetchPersonsTasks", { filter: "taskid", id: this.$route.params.id })
+                    })
+                }
+            })
+        },
+        onDeletePersonClick(id) {
+            db.delete("js6personstasks", { id }).then(() => {
+                this.$store.dispatch("fetchPersonsTasks", { filter: "taskid", id: this.$route.params.id })
             })
         }
     }
