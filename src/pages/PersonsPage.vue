@@ -36,11 +36,17 @@ export default {
 
 <style scoped>
 .add-person-header {
-  max-width: 300px;
+  width: 300px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 3rem;
+}
+
+@media (max-width: 768px) {
+    .add-person-header {
+        width: 250px;
+    }
 }
 
 </style>

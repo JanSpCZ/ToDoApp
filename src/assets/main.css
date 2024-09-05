@@ -58,7 +58,7 @@ ul {
 
 /*Peoples names*/
 .person-container {
-  max-width: 50vw;
+  width: 50vw;
   display: flex;
   align-items: center;
   gap: 20px;
@@ -209,6 +209,14 @@ input[type="date"]:focus {
     left: 100px;
   }
 
+  .my-h2 {
+    font-size: 3.5rem;
+  }
+
+  .person-container {
+    
+  }
+
   .add-header {
     width: 70vw;
   }
@@ -226,7 +234,7 @@ input[type="date"]:focus {
 
   .my-form,
   .assign-form {
-    width: 300px;
+    width: 250px;
   }
 
   .my-input,
