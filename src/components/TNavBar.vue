@@ -72,4 +72,20 @@ div {
     font-weight: 500;
 }
 
+@media (max-width: 768px) {
+    nav {
+        flex-basis: 15vw;
+        padding: 0 1rem;
+    }
+
+    span {
+        display: none;
+    }
+
+    a, div {
+        padding: .5em;
+        justify-content: center;
+    }
+}
+
 </style>

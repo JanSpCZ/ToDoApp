@@ -34,16 +34,16 @@ export default {
 
 .circles{
   z-index: -1000;
-  position: absolute;
+  position: fixed;
   top: -10vh;
   left: 0;
-  height: 100%;
+  height: 100vh;
   width: 100%;
   overflow: hidden;
 }
 
 .circles li{
-    position: absolute;
+    position: fixed;
     display: block;
     list-style: none;
     width: 20px;
@@ -123,7 +123,7 @@ export default {
 }
 
 .circles li:nth-child(10){
-    left: 85%;
+    left: 55%;
     width: 150px;
     height: 150px;
     animation-delay: 0s;

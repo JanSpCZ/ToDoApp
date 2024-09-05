@@ -37,7 +37,7 @@
         </form>
 
         <div v-if="isEdit">
-            <h3>Assigned people:</h3>
+            <h4>Assigned people:</h4>
             <ul v-if="personsTasks.length">
                 <li v-for="person in personsTasks" :key="person.id">
                     <div class="person-container">
@@ -52,7 +52,7 @@
             </ul>
             <div v-else>Not a single soul</div>
             
-            <h3>Assign a person</h3>
+            <h4>Assign a person</h4>
             <div class="assign-form">
                 <div class="input-container select">
                     <label for="addPerson">Choose a person:</label>
@@ -181,3 +181,15 @@ export default {
 }
 
 </script>
+
+<style scoped>
+ul {
+    margin-bottom: 20px;
+}
+
+h4 {
+    color: #00ADB5;
+    font-size: large;
+}
+
+</style>

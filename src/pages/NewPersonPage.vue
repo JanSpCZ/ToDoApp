@@ -23,7 +23,7 @@
         </form>
 
         <div v-if="isEdit">
-            <h3>Assigned tasks:</h3>
+            <h4>Assigned tasks:</h4>
             <ul v-if="personsTasks.length">
                 <li v-for="task in personsTasks" :key="task.id">
                     <div class="person-container">
@@ -38,7 +38,7 @@
             </ul>
             <div v-else>Not a single task</div>
             
-            <h3>Assign a task</h3>
+            <h4>Assign a task</h4>
             <div class="assign-form">
                 <div class="input-container select">
                     <label for="addTask">Choose a task:</label>
@@ -147,5 +147,12 @@ export default {
 </script>
 
 <style scoped>
+ul {
+    margin-bottom: 20px;
+}
 
+h4 {
+    color: #00ADB5;
+    font-size: large;
+}
 </style>

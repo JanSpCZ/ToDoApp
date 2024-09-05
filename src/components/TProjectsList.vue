@@ -143,7 +143,7 @@ ul {
 
 li {
     border-bottom: 3px solid #393E46;
-    max-width: 50vw;
+    width: 50vw;
     padding: .3rem 0;
     cursor: pointer;
     transition: color .2s linear;
@@ -196,4 +196,9 @@ li:hover .description {
     color: #00ADB5;
 }
 
+@media (max-width: 768px) {
+    li {
+        width: 70vw;
+    }
+}
 </style>

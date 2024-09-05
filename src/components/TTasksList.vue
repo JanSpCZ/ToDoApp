@@ -62,7 +62,7 @@ export default {
             modalMsg: "",
             modalCancelBtn: false,
             taskIdToDelete: null,
-            CancelBtnLabel: ""
+            cancelBtnLabel: ""
         }
     },
     created () {
@@ -89,17 +89,18 @@ export default {
                 return "Low"
             }
         },
-        onDeleteClick(id) {
-            this.taskIdToDelete = id
-            db.get("js6tasks/" + id).then(data => {
-                if(data.completed === 1) {
-                    this.modalMsg = "Are you sure to delete " + this.tasks.find(task => task.id === id).task + "?"                
-                    this.modalConfirmBtn = true
-                    this.cancelBtnLabel = "Cancel"
-                } else {
-                    this.modalMsg = "Can not delete uncompleted task"
+        onDeleteClick(taskId) {
+            this.taskIdToDelete = taskId
+            db.get("js6personstasks?taskid=" + taskId).then(data => {
+                if(data.length) {
+                    this.modalMsg = "This task has people assigned. Can not delete"
                     this.modalConfirmBtn = false
                     this.cancelBtnLabel = "OK"
+                } else {
+                    const task = this.tasks.find(task => task.id === taskId)
+                    this.modalMsg = `Are you sure you want to delete ${task.task}?`
+                    this.modalConfirmBtn = true
+                    this.cancelBtnLabel = "Cancel"
                 }
                 this.showModal = true
             })
@@ -142,7 +143,7 @@ export default {
 <style scoped>
 .tasks-container {
     cursor: default;
-    max-width: 50vw;
+    width: 50vw;
 }
 
 .tasks-name-container {
@@ -215,5 +216,27 @@ li {
 
 .project-icon:hover {
     color: #00ADB5;
+}
+
+@media (max-width: 1000px) {
+    .tasks-container {
+        width: 50vw;
+        justify-content: flex-start;
+    }
+
+    li {
+        flex-direction: column;
+        margin-top: 20px;
+    }
+
+    .tasks-date {
+        text-align: start;
+        margin: 0;
+    }
+}
+@media (max-width: 768px) {
+    .tasks-container {
+        width: 70vw;
+    }
 }
 </style>

@@ -52,7 +52,7 @@ export default {
             modalMsg: "",
             modalCancelBtn: false,
             personIdToDelete: null,
-            CancelBtnLabel: ""
+            cancelBtnLabel: ""
         }
     },
     created () {

@@ -81,7 +81,7 @@ ul {
 
 /*Form styles*/
 .my-form {
-  max-width: 400px;
+  width: 400px;
   margin: 2rem 0;
   display: flex;
   flex-direction: column;
@@ -202,4 +202,38 @@ input[type="date"]:focus {
 .submit-button:hover {
   color: #00ADB5;
   border: 3px solid #00ADB5;
+}
+
+@media (max-width: 768px) {
+  body {
+    left: 100px;
+  }
+
+  .add-header {
+    width: 70vw;
+  }
+
+  .input-container {
+    width: 100%;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .select::after {
+    top: 50%;
+    right: 0;
+  }
+
+  .my-form,
+  .assign-form {
+    width: 300px;
+  }
+
+  .my-input,
+  #position-id,
+  #project-id,
+  #addTask,
+  #addPerson {
+    width: 100%;
+  }
 }
