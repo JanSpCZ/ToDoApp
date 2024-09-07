@@ -2,9 +2,9 @@
     <div v-if="!loading">
         <div v-if="tasks.length" class="tasks-container">
             <ul>
-                <li v-for="task in tasks" :key="task.id">
+                <li v-for="(task, index) in tasks" :key="task.id">
                     <div class="tasks-name-container">
-                        <input type="checkbox" v-model="task.completed" :checked="task.completed" @change="toggleCheckbox(task)">
+                        <input type="checkbox" class="checkbox" v-model="tasksModel[index]" :checked="task.completed" @change="toggleCheckbox(task, index)">
                         <div class="tasks-name" @click="$router.push('/newtask/' + task.id)">{{ task.task }}</div>
                     </div>
                     <div class="tasks-description">
@@ -62,13 +62,18 @@ export default {
             modalMsg: "",
             modalCancelBtn: false,
             taskIdToDelete: null,
-            cancelBtnLabel: ""
+            cancelBtnLabel: "",
+            tasksModel: []
         }
     },
     created () {
         const action = this.projectId === "All" ? "fetchTasks" : "fetchProjectsTasks"
         this.$store.dispatch(action, this.projectId).then(() => {
+            this.tasks.forEach(task => {
+                this.tasksModel.push(!!task.completed)
+            })
             this.loading = false
+            console.log(this.tasksModel)
         })
     },
     computed: {
@@ -120,19 +125,12 @@ export default {
                 })
             })
         },
-        //TODO: checkboxy nejsou kamarádi
-        toggleCheckbox(task) {
+        toggleCheckbox(task, index) {
             const updatedTask = {
-                data: {
-                    completed: task.completed ? 1 : 0,
-                    date: task.date,
-                    id: task.id,
-                    priority: task.priority,
-                    projectid: task.projectid,
-                    task: task.task
-                }
+                    completed: this.tasksModel[index] ? 1 : 0,
+                    id: task.id
             }
-
+            console.log(updatedTask)
             this.$store.dispatch("updateTask", updatedTask)
         }
     },
@@ -217,6 +215,38 @@ li {
 .project-icon:hover {
     color: #00ADB5;
 }
+
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  font-size: 1rem;
+  padding: 0.1rem;
+  border: 0.15rem solid #00ADB5;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: .8rem;
+  height: .8rem;
+  clip-path: polygon(31% 70%, 31% 48%, 4% 39%, 18% 95%, 36% 95%, 96% 28%, 80% 0%);
+  transform: scale(0);
+  background-color: #00ADB5;
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
+input[type="checkbox"]:hover {
+  color: black;
+}
+
+
 
 @media (max-width: 1000px) {
     .tasks-container {

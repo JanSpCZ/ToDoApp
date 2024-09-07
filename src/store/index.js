@@ -129,8 +129,10 @@ const store = createStore({
             })
         },
         updateTask (context, payload) {
-            return db.put(`js6tasks/${payload.data.id}`, payload).then(() => {
-                context.commit("setUpdateTask", payload.data)
+            return db.put(`js6tasks`, payload).then(() => {
+                db.get("js6tasks/" + payload.id).then((record) => {
+                    context.commit("setUpdateTask", record)
+                })
             })
         }
     },
