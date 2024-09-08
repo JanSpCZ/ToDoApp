@@ -43,7 +43,6 @@
 </template>
 
 <script>
-//TODO: zobrazení modálu pro mazání tasks, pokud jsou k nim přiřazení lidé
 import db from "@/utils/db"
 import TModal from "./TModal.vue"
 
@@ -73,7 +72,6 @@ export default {
                 this.tasksModel.push(!!task.completed)
             })
             this.loading = false
-            console.log(this.tasksModel)
         })
     },
     computed: {

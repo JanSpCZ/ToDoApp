@@ -64,6 +64,11 @@ ul {
   gap: 20px;
 }
 
+.assigned-personstasks {
+  cursor: default;
+  transition: color .2s linear;
+}
+
 .person-name,
 .trash-icon {
   cursor: pointer;
@@ -71,6 +76,7 @@ ul {
 }
 
 .person-name:hover,
+.assigned-personstasks:hover,
 .trash-icon:hover {
   color: #00ADB5;
 }
@@ -211,10 +217,6 @@ input[type="date"]:focus {
 
   .my-h2 {
     font-size: 3.5rem;
-  }
-
-  .person-container {
-    
   }
 
   .add-header {

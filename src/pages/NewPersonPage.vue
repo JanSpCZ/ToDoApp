@@ -27,7 +27,7 @@
             <ul v-if="personsTasks.length">
                 <li v-for="task in personsTasks" :key="task.id">
                     <div class="person-container">
-                        <div class="person-name">
+                        <div class="assigned-personstasks">
                             {{ `${task.task} ${task.date}` }}
                         </div>
                         <div class="trash-icon" @click="onDeleteTaskClick(task.id)">
